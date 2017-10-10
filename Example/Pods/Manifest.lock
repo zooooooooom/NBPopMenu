@@ -1,0 +1,16 @@
+PODS:
+  - NBPopMenu (0.1.0)
+
+DEPENDENCIES:
+  - NBPopMenu (from `../`)
+
+EXTERNAL SOURCES:
+  NBPopMenu:
+    :path: ../
+
+SPEC CHECKSUMS:
+  NBPopMenu: fb4045bf3fa0298f891cd64a66d426821691773a
+
+PODFILE CHECKSUM: 5a96cf7ebad8d96df9724d3b1bf7cff570dd0b9f
+
+COCOAPODS: 1.4.0.beta.1

@@ -1,0 +1,6 @@
+framework module Pods_NBPopMenu_Example {
+  umbrella header "Pods-NBPopMenu_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

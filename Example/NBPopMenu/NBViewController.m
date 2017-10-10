@@ -7,6 +7,7 @@
 //
 
 #import "NBViewController.h"
+#import "NBPopMenu.h"
 
 @interface NBViewController ()
 
@@ -17,13 +18,43 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    self.navigationItem.title = @"测试";
+    // 左边的
+    UIButton *popLeftBtn = [UIButton buttonWithType:UIButtonTypeContactAdd];
+    [popLeftBtn addTarget:self action:@selector(addBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:popLeftBtn];
+    // 右边的
+    UIButton *popRightBtn = [UIButton buttonWithType:UIButtonTypeContactAdd];
+    [popRightBtn addTarget:self action:@selector(addBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:popRightBtn];
+    
 }
 
-- (void)didReceiveMemoryWarning
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    NSArray *arr = @[@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10"];
+    UITouch *t = touches.anyObject;
+    CGPoint p = [t locationInView: self.view];
+    [NBPopMenu showPopMenuWithItems:arr fromPoint:p updateWithConfig:^(NBPopMenuConfig *config) {
+        config.popMenuVisibleItemCount = 4;
+        config.popMenuOffset = 5;
+    } clickItem:^(NSInteger index) {
+        
+    }];
 }
+
+
+
+- (IBAction)addBtnClick:(UIButton *)sender {
+    NSArray *arr = @[@"1",@"2",@"3",@"4"];
+    [NBPopMenu showPopMenuWithItems:arr fromView:sender updateWithConfig:^(NBPopMenuConfig *config) {
+        config.popMenuSeparatorColor = [UIColor redColor];
+        config.popMenuOffset = 5;
+    } clickItem:nil];
+    
+}
+
+
+
 
 @end

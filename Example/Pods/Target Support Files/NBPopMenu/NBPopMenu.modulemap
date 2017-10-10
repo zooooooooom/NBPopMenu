@@ -1,0 +1,6 @@
+framework module NBPopMenu {
+  umbrella header "NBPopMenu-umbrella.h"
+
+  export *
+  module * { export * }
+}
