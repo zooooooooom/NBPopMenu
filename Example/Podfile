@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'NBPopMenu_Example' do
+  pod 'NBPopMenu', :path => '../'
+
+  target 'NBPopMenu_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
