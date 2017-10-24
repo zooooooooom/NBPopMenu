@@ -5,25 +5,55 @@
 [![License](https://img.shields.io/cocoapods/l/NBPopMenu.svg?style=flat)](http://cocoapods.org/pods/NBPopMenu)
 [![Platform](https://img.shields.io/cocoapods/p/NBPopMenu.svg?style=flat)](http://cocoapods.org/pods/NBPopMenu)
 
-## Example
+## 示例图片
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+![image](https://github.com/shiyingfeng/NBPopMenu/raw/master/Gif/1.gif)
 
-## Requirements
+## 介绍
+NBPopMenu支持弹出框定制.非常方便使用.使用简单.代码块集中.
 
-## Installation
+## 使用方式
 
-NBPopMenu is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
+###### 1.最简洁的使用方式
+```
+NSArray *arr = @[@"1",@"2",@"3",@"4"];
+[NBPopMenu showPopMenuWithItems:arr fromView:sender updateWithConfig:nil clickItem:nil];
+```
 
-```ruby
+###### 2.回调的使用方式
+```
+NSArray *arr = @[@"1",@"2",@"3",@"4"];
+[NBPopMenu showPopMenuWithItems:arr fromView:sender updateWithConfig:nil clickItem:^(NSInteger index) {
+NSLog(@"点击了%zd",index);
+}];
+```
+
+###### 3.默认初始化一个选择(需配合使用)
+```
+static NSInteger ind = 2;
+NSArray *arr = @[@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10"];
+UITouch *t = touches.anyObject;
+CGPoint p = [t locationInView: self.view];
+[NBPopMenu showPopMenuWithItems:arr fromPoint:p updateWithConfig:^(NBPopMenuConfig *config) {
+config.popMenuVisibleItemCount = 4;
+config.popMenuOffset = 5;
+config.popMenuSelectIndex = ind;
+config.popMenuSelectedBgColor = [UIColor yellowColor];
+} clickItem:^(NSInteger index) {
+ind = index;
+}];
+```
+
+## 安装
+
+NBPopMenu 可以通过Pods安装 [CocoaPods](http://cocoapods.org).
+
+```
 pod 'NBPopMenu'
 ```
 
-## Author
+## 联系方式
 
-260497176@qq.com, 260497176@qq.com
+左手边是幸福, 260497176@qq.com
 
-## License
 
-NBPopMenu is available under the MIT license. See the LICENSE file for more info.

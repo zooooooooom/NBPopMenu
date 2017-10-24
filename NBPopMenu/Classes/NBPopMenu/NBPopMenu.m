@@ -187,15 +187,23 @@
  */
 - (void)show
 {
+    self.coverBtn.backgroundColor = self.config.popMenuCoverColor;
+    self.coverBtn.alpha = 0;
     [NBPopMenuKeyWindow addSubview:self.coverBtn];
     [NBPopMenuKeyWindow addSubview:self];
+    if (self.config.popMenuSelectIndex != -1 && self.config.popMenuSelectIndex < self.items.count) {
+        
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.config.popMenuSelectIndex inSection:0];
+
+        [self.menuTableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+    }
     NBPopMenuCell *lastCell = [self getLastVisibleCell];
     lastCell.isShowSeparator = NO;
     self.layer.affineTransform = CGAffineTransformMakeScale(0.1, 0.1);
     [UIView animateWithDuration: 0.25 animations:^{
         self.layer.affineTransform = CGAffineTransformMakeScale(1.0, 1.0);
         self.alpha = 1;
-        self.coverBtn.alpha = 0.2;
+        self.coverBtn.alpha = self.config.popMenuCoverAlpha;
     }];
 }
 
@@ -307,6 +315,7 @@
     NBPopMenuCell *cell = [NBPopMenuCell cellWithTableView:tableView];
     cell.textLabel.text = self.items[indexPath.row];
     cell.bottomLineColor = self.config.popMenuSeparatorColor;
+    cell.config = self.config;
     return cell;
 }
 
@@ -318,7 +327,7 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (self.clickIndexBlock) {
         self.clickIndexBlock(indexPath.row);
     }
@@ -368,7 +377,6 @@
     if (_coverBtn == nil) {
         _coverBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _coverBtn.frame = [UIScreen mainScreen].bounds;
-        _coverBtn.backgroundColor = [UIColor blackColor];
         _coverBtn.alpha = 0;
         [_coverBtn addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
     }

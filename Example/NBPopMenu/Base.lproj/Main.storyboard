@@ -24,7 +24,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iSX-d6-zxK">
                                 <rect key="frame" x="176" y="322.5" width="22" height="22"/>
                                 <connections>
-                                    <action selector="addBtnClick:" destination="whP-gf-Uak" eventType="touchUpInside" id="Ziq-ED-olH"/>
+                                    <action selector="midBtnClick:" destination="whP-gf-Uak" eventType="touchUpInside" id="ly2-qD-mkV"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8D2-oN-JyI">

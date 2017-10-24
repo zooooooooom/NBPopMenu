@@ -22,6 +22,11 @@
     config.popMenuCornerRadius = 6;
     config.popMenuSeparatorColor = [UIColor lightGrayColor];
     config.popMenuBackgroundColor = [UIColor whiteColor];
+    config.popMenuSelectIndex = -1;
+    config.popMenuSelectedBgColor = [UIColor lightGrayColor];
+    config.popMenuTextColor = [UIColor blackColor];
+    config.popMenuCoverColor = [UIColor blackColor];
+    config.popMenuCoverAlpha = 0.2;
     return config;
 }
 

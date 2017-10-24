@@ -15,6 +15,10 @@
  */
 + (instancetype)defaultConfig;
 /**
+ 默认选中的项(默认不选中)
+ */
+@property(nonatomic, assign) CGFloat popMenuSelectIndex;
+/**
  指向箭头的高度
  */
 @property(nonatomic, assign) CGFloat popMenuOffset;
@@ -53,8 +57,24 @@
 @property(nonatomic, strong) UIColor *popMenuSeparatorColor;
 
 /**
- 分割线颜色
+ 背景颜色(可传入带alpha的颜色)
  */
 @property(nonatomic, strong) UIColor *popMenuBackgroundColor;
+/**
+ 分割线颜色
+ */
+@property(nonatomic, strong) UIColor *popMenuSelectedBgColor;
+/**
+ 字体颜色
+ */
+@property(nonatomic, strong) UIColor *popMenuTextColor;
+/**
+ 底部遮盖的颜色默认[UIColor blackColor];
+ */
+@property(nonatomic, strong) UIColor *popMenuCoverColor;
+/**
+ 底部遮盖的颜色的alpha(0~1)之间过渡 与popMenuCoverColor结合使用默认0.2
+ */
+@property(nonatomic, assign) CGFloat popMenuCoverAlpha;
 
 @end

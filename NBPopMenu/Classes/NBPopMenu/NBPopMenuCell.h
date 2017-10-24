@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class NBPopMenuConfig;
 @interface NBPopMenuCell : UITableViewCell
 
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 
 @property(nonatomic, strong) UIColor *bottomLineColor;
 @property(nonatomic, assign) BOOL isShowSeparator;
+@property(nonatomic, strong) NBPopMenuConfig *config;
 
 @end

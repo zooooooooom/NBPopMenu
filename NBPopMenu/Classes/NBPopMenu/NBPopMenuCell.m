@@ -7,6 +7,7 @@
 //
 
 #import "NBPopMenuCell.h"
+#import "NBPopMenuConfig.h"
 
 static NSString *NBPopMenuCellID = @"NBPopMenuCellID";
 @interface NBPopMenuCell()
@@ -14,6 +15,12 @@ static NSString *NBPopMenuCellID = @"NBPopMenuCellID";
 
 @end
 @implementation NBPopMenuCell
+
+- (void)setConfig:(NBPopMenuConfig *)config
+{
+    _config = config;
+    self.textLabel.textColor = config.popMenuTextColor;
+}
 
 + (instancetype)cellWithTableView:(UITableView *)tableView
 {
@@ -37,7 +44,7 @@ static NSString *NBPopMenuCellID = @"NBPopMenuCellID";
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
     
-    
+    self.contentView.backgroundColor = selected ? self.config.popMenuSelectedBgColor : [UIColor clearColor];
 }
 
 - (void)layoutSubviews
@@ -49,6 +56,7 @@ static NSString *NBPopMenuCellID = @"NBPopMenuCellID";
 
 - (void)setupUI
 {
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
     [self.contentView addSubview:self.bottomLine];
 }
 
