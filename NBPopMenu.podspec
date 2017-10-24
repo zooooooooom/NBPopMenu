@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'NBPopMenu'
-  s.version          = '0.2.1'
+  s.version          = '0.2.2'
   s.summary          = 'NBPopMenu 弹出菜单类似QQ点击弹出扫一扫.'
 
 # This description is used to generate tags and improve search results.
