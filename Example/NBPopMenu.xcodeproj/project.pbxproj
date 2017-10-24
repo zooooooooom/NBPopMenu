@@ -37,7 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		04712B881F9ECF2600E8A9EE /* 1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 1.gif; sourceTree = "<group>"; };
+		04712B8A1F9ED86C00E8A9EE /* 1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 1.gif; sourceTree = "<group>"; };
 		3AB0AD8A7BAA84FAC874F0BC /* Pods-NBPopMenu_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NBPopMenu_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-NBPopMenu_Example/Pods-NBPopMenu_Example.release.xcconfig"; sourceTree = "<group>"; };
 		43A1B9495C148D669725AD1B /* NBPopMenu.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = NBPopMenu.podspec; path = ../NBPopMenu.podspec; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* NBPopMenu_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NBPopMenu_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -96,12 +96,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		04712B871F9EC5CB00E8A9EE /* Gif */ = {
+		04712B891F9ED86C00E8A9EE /* Gif */ = {
 			isa = PBXGroup;
 			children = (
-				04712B881F9ECF2600E8A9EE /* 1.gif */,
+				04712B8A1F9ED86C00E8A9EE /* 1.gif */,
 			);
-			path = Gif;
+			name = Gif;
+			path = ../Gif;
 			sourceTree = "<group>";
 		};
 		5DA045FCEF39D6D03049BB62 /* Pods */ = {
@@ -118,7 +119,7 @@
 		6003F581195388D10070C39A = {
 			isa = PBXGroup;
 			children = (
-				04712B871F9EC5CB00E8A9EE /* Gif */,
+				04712B891F9ED86C00E8A9EE /* Gif */,
 				60FF7A9C1954A5C5007DD14C /* Podspec Metadata */,
 				6003F593195388D20070C39A /* Example for NBPopMenu */,
 				6003F5B5195388D20070C39A /* Tests */,
