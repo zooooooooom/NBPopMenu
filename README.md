@@ -44,6 +44,21 @@ ind = index;
 }];
 ```
 
+###### 4.通过传入字典弹出popMenu
+```
+NSDictionary *itemDict = @{@"发起群聊":@"chat_img_groupchat",
+@"添加朋友":@"home_img_my",
+@"扫一扫":@"home_img_scan"
+};
+
+[NBPopMenu showPopMenuWithDict:itemDict fromPoint:sender.center updateWithConfig:^(NBPopMenuConfig *config) {
+config.popMenuBackgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
+config.popMenuTextColor = [UIColor whiteColor];
+} clickItem:^(NSInteger index) {
+NSLog(@"点击了%zd",index);
+}];
+```
+
 ## 安装
 
 NBPopMenu 可以通过Pods安装 [CocoaPods](http://cocoapods.org).
