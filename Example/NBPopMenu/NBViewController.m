@@ -18,7 +18,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationItem.title = @"测试";
+    
+    // 添加中间view
+    UIButton *titleView = [[UIButton alloc] init];
+    [titleView setTitle:@"中间按钮" forState: UIControlStateNormal];
+    [titleView setTitleColor:[UIColor purpleColor] forState:UIControlStateNormal];
+    [titleView addTarget:self action:@selector(titleViewClick:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.titleView = titleView;
+    
     // 左边的
     UIButton *popLeftBtn = [UIButton buttonWithType:UIButtonTypeContactAdd];
     [popLeftBtn addTarget:self action:@selector(leftRightBarButtonClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -30,6 +37,27 @@
     
 }
 
+/**
+ 导航栏中间按钮点击
+ */
+- (void)titleViewClick:(UIButton *)btn
+{
+    NSDictionary *itemDict = @{@"发起群聊":@"chat_img_groupchat",
+                               @"添加朋友":@"home_img_my",
+                               @"扫一扫":@"home_img_scan"
+                               };
+    
+    [NBPopMenu showPopMenuWithDict:itemDict fromView:btn updateWithConfig:^(NBPopMenuConfig *config) {
+        config.popMenuBackgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
+        config.popMenuTextColor = [UIColor whiteColor];
+    } clickItem:^(NSInteger index) {
+        NSLog(@"点击了%zd",index);
+    }];
+}
+
+/**
+ 屏幕的点击
+ */
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     
@@ -47,6 +75,40 @@
     }];
 }
 
+/**
+ 左上角按钮的点击
+ */
+- (IBAction)leftTopBtnClick:(UIButton *)sender {
+    
+    NSArray *arr = @[@"发起群聊",@"添加朋友",@"扫一扫"];
+    NSArray *images = @[@"chat_img_groupchat",@"home_img_my",@"home_img_scan"];
+    
+    [NBPopMenu showPopMenuWithItems:arr WithImages:images fromView:sender updateWithConfig:^(NBPopMenuConfig *config) {
+        config.popMenuBackgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
+        config.popMenuTextColor = [UIColor whiteColor];
+    } clickItem:^(NSInteger index) {
+        NSLog(@"点击了%zd",index);
+    }];
+}
+
+/**
+ 右上角按钮的点击
+ */
+- (IBAction)topRightBtnClick:(UIButton *)sender {
+    
+    NSDictionary *itemDict = @{@"发起群聊":@"chat_img_groupchat",
+                                      @"添加朋友":@"home_img_my",
+                                      @"扫一扫":@"home_img_scan"
+                                      };
+    
+    [NBPopMenu showPopMenuWithDict:itemDict fromPoint:sender.center updateWithConfig:^(NBPopMenuConfig *config) {
+        config.popMenuBackgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
+        config.popMenuTextColor = [UIColor whiteColor];
+    } clickItem:^(NSInteger index) {
+        NSLog(@"点击了%zd",index);
+    }];
+    
+}
 
 /**
  中间按钮的点击// 取消箭头
@@ -94,6 +156,7 @@
     } clickItem:nil];
     
 }
+
 
 
 

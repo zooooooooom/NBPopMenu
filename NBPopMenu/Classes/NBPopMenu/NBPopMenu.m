@@ -22,6 +22,10 @@
  */
 @property(nonatomic, strong) NSArray <NSString *>*items;
 /**
+ 用于保存图片的数组
+ */
+@property(nonatomic, strong) NSArray <NSString *>*images;
+/**
  数据展示的tableView
  */
 @property(nonatomic, strong) UITableView *menuTableView;
@@ -60,25 +64,79 @@
  */
 + (instancetype)showPopMenuWithItems:(NSArray <NSString *>*)items fromView:(UIView *)fromView updateWithConfig: (void(^)(NBPopMenuConfig *config))configBlock clickItem:(void(^)(NSInteger index))clickIndexBlock;
 {
-    NBPopMenu *popMenu = [[NBPopMenu alloc] initWithItems:items updateWithConfig:configBlock clickItem:clickIndexBlock];
+    return [self showPopMenuWithItems:items WithImages:nil fromView:fromView updateWithConfig:configBlock clickItem:clickIndexBlock];
+}
+
++ (instancetype)showPopMenuWithItems:(NSArray <NSString *>*)items
+                          WithImages:(NSArray <NSString *>*)images
+                            fromView:(UIView *)fromView
+                    updateWithConfig: (void(^)(NBPopMenuConfig *config))configBlock
+                           clickItem:(void(^)(NSInteger index))clickIndexBlock
+{
+    NBPopMenu *popMenu = [[NBPopMenu alloc] initWithItems:items images:images updateWithConfig:configBlock clickItem:clickIndexBlock];
     
     [popMenu showFromView:fromView];
     
     return popMenu;
 }
 
++ (instancetype)showPopMenuWithDict:(NSDictionary *)itemDict
+                            fromView:(UIView *)fromView
+                    updateWithConfig: (void(^)(NBPopMenuConfig *config))configBlock
+                           clickItem:(void(^)(NSInteger index))clickIndexBlock
+{
+    NSMutableArray <NSString *>*arr = [NSMutableArray array];
+    NSMutableArray <NSString *>*images = [NSMutableArray array];
+    
+    [itemDict enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *value, BOOL * _Nonnull stop) {
+        [arr addObject:key];
+        [images addObject:value];
+    }];
+    
+    return [self showPopMenuWithItems:arr WithImages:images fromView:fromView updateWithConfig:configBlock clickItem:clickIndexBlock];
+}
+
 + (instancetype)showPopMenuWithItems:(NSArray <NSString *>*)items fromPoint:(CGPoint)point updateWithConfig: (void(^)(NBPopMenuConfig *config))configBlock clickItem:(void(^)(NSInteger index))clickIndexBlock
 {
-    NBPopMenu *popMenu = [[NBPopMenu alloc] initWithItems:items updateWithConfig:configBlock clickItem:clickIndexBlock];
+    
+    return [self showPopMenuWithItems:items WithImages:nil fromPoint:point updateWithConfig:configBlock clickItem:clickIndexBlock];
+}
+
++ (instancetype)showPopMenuWithDict:(NSDictionary *)itemDict
+                           fromPoint:(CGPoint)point
+                    updateWithConfig: (void(^)(NBPopMenuConfig *config))configBlock
+                           clickItem:(void(^)(NSInteger index))clickIndexBlock
+{
+    NSMutableArray <NSString *>*arr = [NSMutableArray array];
+    NSMutableArray <NSString *>*images = [NSMutableArray array];
+    
+    [itemDict enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *value, BOOL * _Nonnull stop) {
+        [arr addObject:key];
+        [images addObject:value];
+    }];
+    return [self showPopMenuWithItems:arr WithImages:images fromPoint:point updateWithConfig:configBlock clickItem:clickIndexBlock];
+}
+
++ (instancetype)showPopMenuWithItems:(NSArray <NSString *>*)items
+                          WithImages:(NSArray <NSString *>*)images
+                           fromPoint:(CGPoint)point
+                    updateWithConfig: (void(^)(NBPopMenuConfig *config))configBlock
+                           clickItem:(void(^)(NSInteger index))clickIndexBlock
+{
+    NBPopMenu *popMenu = [[NBPopMenu alloc] initWithItems:items images:images updateWithConfig:configBlock clickItem:clickIndexBlock];
     
     [popMenu showFromPoint:point];
     
     return popMenu;
 }
 
-- (instancetype)initWithItems:(NSArray <NSString *>*)items updateWithConfig: (void(^)(NBPopMenuConfig *config))configBlock clickItem:(void(^)(NSInteger index))clickIndexBlock
+- (instancetype)initWithItems:(NSArray <NSString *>*)items images:(NSArray <NSString *>*)images updateWithConfig: (void(^)(NBPopMenuConfig *config))configBlock clickItem:(void(^)(NSInteger index))clickIndexBlock
 {
     NBPopMenu *popMenu = [[NBPopMenu alloc] init];
+    if (images != nil) {
+        NSAssert(items.count == images.count, @"传入的选项和图片数量不一致");
+        popMenu.images = images;
+    }
     if (configBlock) {
         configBlock(popMenu.config);
     }
@@ -314,6 +372,10 @@
 {
     NBPopMenuCell *cell = [NBPopMenuCell cellWithTableView:tableView];
     cell.textLabel.text = self.items[indexPath.row];
+    if (self.images) {
+        NSString *imageName = self.images[indexPath.row];
+        cell.imageView.image = [UIImage imageNamed:imageName];
+    }
     cell.bottomLineColor = self.config.popMenuSeparatorColor;
     cell.config = self.config;
     return cell;

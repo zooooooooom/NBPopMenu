@@ -42,28 +42,95 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="60a-QN-a9F">
                                 <rect key="frame" x="30" y="94" width="22" height="22"/>
                                 <connections>
-                                    <action selector="addBtnClick:" destination="whP-gf-Uak" eventType="touchUpInside" id="KDw-1A-ii4"/>
+                                    <action selector="leftTopBtnClick:" destination="whP-gf-Uak" eventType="touchUpInside" id="CCW-s2-XO5"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TaQ-bZ-FYG">
                                 <rect key="frame" x="323" y="94" width="22" height="22"/>
                                 <connections>
-                                    <action selector="addBtnClick:" destination="whP-gf-Uak" eventType="touchUpInside" id="Rl8-hD-vyT"/>
+                                    <action selector="topRightBtnClick:" destination="whP-gf-Uak" eventType="touchUpInside" id="Zbm-zV-6Lt"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="左上角+号按钮的点击" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k6c-Bl-0vR">
+                                <rect key="frame" x="30" y="126" width="118.5" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="右上角+号按钮的点击(传入的中心点)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ko1-Ez-7Gb">
+                                <rect key="frame" x="195" y="126" width="150" height="14.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="ygS-c5-Hr0"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="中间+号按钮的点击(取消了箭头)以及更改了背景遮罩" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zi4-hu-BuB">
+                                <rect key="frame" x="44" y="354.5" width="286.5" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="左下角+号按钮的点击" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H7N-NR-tr0">
+                                <rect key="frame" x="30" y="647" width="118.5" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="右下角+号按钮的点击" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EDC-pd-6Cl">
+                                <rect key="frame" x="226.5" y="647" width="118.5" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="左上角item的点击" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ehc-jW-RNd">
+                                <rect key="frame" x="10" y="64" width="98.5" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="右上角item的点击" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bwK-Rj-vII">
+                                <rect key="frame" x="266.5" y="64" width="98.5" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="中间titleView的点击" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3uP-L3-qpG">
+                                <rect key="frame" x="133.5" y="64" width="109.5" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Mvr-aV-6Um" firstAttribute="top" secondItem="8D2-oN-JyI" secondAttribute="bottom" constant="30" id="0Y1-pC-WA8"/>
+                            <constraint firstItem="bwK-Rj-vII" firstAttribute="top" secondItem="uEw-UM-LJ8" secondAttribute="bottom" id="BMf-Il-UsH"/>
+                            <constraint firstItem="EDC-pd-6Cl" firstAttribute="top" secondItem="GvR-Vg-YdO" secondAttribute="bottom" constant="10" id="Bsz-RG-j6U"/>
+                            <constraint firstItem="zi4-hu-BuB" firstAttribute="top" secondItem="iSX-d6-zxK" secondAttribute="bottom" constant="10" id="CCb-Vf-b99"/>
                             <constraint firstItem="60a-QN-a9F" firstAttribute="leading" secondItem="TpU-gO-2f1" secondAttribute="leading" constant="30" id="CKO-Jl-qBh"/>
                             <constraint firstItem="iSX-d6-zxK" firstAttribute="centerX" secondItem="TpU-gO-2f1" secondAttribute="centerX" id="Dzs-xT-y3M"/>
+                            <constraint firstItem="H7N-NR-tr0" firstAttribute="top" secondItem="8D2-oN-JyI" secondAttribute="bottom" constant="10" id="GFB-El-vRq"/>
                             <constraint firstItem="Mvr-aV-6Um" firstAttribute="top" secondItem="GvR-Vg-YdO" secondAttribute="bottom" constant="30" id="IK8-v2-rIY"/>
+                            <constraint firstItem="H7N-NR-tr0" firstAttribute="leading" secondItem="8D2-oN-JyI" secondAttribute="leading" id="RkF-Oq-9cL"/>
+                            <constraint firstItem="ehc-jW-RNd" firstAttribute="leading" secondItem="TpU-gO-2f1" secondAttribute="leading" constant="10" id="VWG-UZ-1tQ"/>
                             <constraint firstAttribute="trailing" secondItem="GvR-Vg-YdO" secondAttribute="trailing" constant="30" id="WUN-3q-hSq"/>
+                            <constraint firstAttribute="trailing" secondItem="bwK-Rj-vII" secondAttribute="trailing" constant="10" id="a5e-oi-usG"/>
+                            <constraint firstItem="ko1-Ez-7Gb" firstAttribute="top" secondItem="TaQ-bZ-FYG" secondAttribute="bottom" constant="10" id="aNv-sB-scT"/>
+                            <constraint firstItem="zi4-hu-BuB" firstAttribute="centerX" secondItem="iSX-d6-zxK" secondAttribute="centerX" id="bTo-Hw-EGi"/>
+                            <constraint firstItem="3uP-L3-qpG" firstAttribute="centerX" secondItem="TpU-gO-2f1" secondAttribute="centerX" id="caW-YL-mPF"/>
                             <constraint firstItem="iSX-d6-zxK" firstAttribute="centerY" secondItem="TpU-gO-2f1" secondAttribute="centerY" id="g9j-t6-pbm"/>
                             <constraint firstItem="TaQ-bZ-FYG" firstAttribute="top" secondItem="uEw-UM-LJ8" secondAttribute="bottom" constant="30" id="hmj-YD-Cfu"/>
+                            <constraint firstItem="EDC-pd-6Cl" firstAttribute="trailing" secondItem="GvR-Vg-YdO" secondAttribute="trailing" id="ipt-aL-ea1"/>
                             <constraint firstAttribute="trailing" secondItem="TaQ-bZ-FYG" secondAttribute="trailing" constant="30" id="jo3-iN-EL8"/>
                             <constraint firstItem="8D2-oN-JyI" firstAttribute="leading" secondItem="TpU-gO-2f1" secondAttribute="leading" constant="30" id="kGr-4d-n3o"/>
+                            <constraint firstItem="3uP-L3-qpG" firstAttribute="top" secondItem="uEw-UM-LJ8" secondAttribute="bottom" id="kZe-Dm-BqZ"/>
+                            <constraint firstItem="k6c-Bl-0vR" firstAttribute="leading" secondItem="60a-QN-a9F" secondAttribute="leading" id="mCm-nQ-mwU"/>
+                            <constraint firstItem="k6c-Bl-0vR" firstAttribute="top" secondItem="60a-QN-a9F" secondAttribute="bottom" constant="10" id="rvC-mM-Q0X"/>
                             <constraint firstItem="60a-QN-a9F" firstAttribute="top" secondItem="uEw-UM-LJ8" secondAttribute="bottom" constant="30" id="uZj-th-d8c"/>
+                            <constraint firstItem="ko1-Ez-7Gb" firstAttribute="trailing" secondItem="TaQ-bZ-FYG" secondAttribute="trailing" id="ulI-qf-iZc"/>
+                            <constraint firstItem="ehc-jW-RNd" firstAttribute="top" secondItem="uEw-UM-LJ8" secondAttribute="bottom" id="zEf-tg-CQ8"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="9qP-pY-koV"/>
