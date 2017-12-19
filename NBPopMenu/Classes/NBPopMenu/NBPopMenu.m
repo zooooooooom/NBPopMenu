@@ -286,6 +286,17 @@
 }
 
 /**
+ 按钮遮罩点击
+ */
+- (void)coverBtnClick:(UIButton *)coverBtnClick
+{
+    [self dismiss];
+    if (self.backgroundViewClick) {
+        self.backgroundViewClick();
+    }
+}
+
+/**
  隐藏
  */
 - (void)dismiss
@@ -295,9 +306,6 @@
         self.coverBtn.alpha = 0;
         self.alpha = 0;
     } completion:^(BOOL finished) {
-        if (self.backgroundViewClick) {
-            self.backgroundViewClick();
-        }
         [self removeFromSuperview];
         [self.coverBtn removeFromSuperview];
     }];
@@ -463,7 +471,7 @@
         _coverBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _coverBtn.frame = [UIScreen mainScreen].bounds;
         _coverBtn.alpha = 0;
-        [_coverBtn addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
+        [_coverBtn addTarget:self action:@selector(coverBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _coverBtn;
 }
