@@ -52,6 +52,8 @@
         config.popMenuTextColor = [UIColor whiteColor];
     } clickItem:^(NSInteger index) {
         NSLog(@"点击了%zd",index);
+    } backgroundViewClick:^{
+        NSLog(@"点击了背景");
     }];
 }
 
@@ -72,6 +74,8 @@
         config.popMenuSelectedBgColor = [UIColor yellowColor];
     } clickItem:^(NSInteger index) {
         ind = index;
+    } backgroundViewClick:^{
+        NSLog(@"点击了背景");
     }];
 }
 
@@ -88,6 +92,8 @@
         config.popMenuTextColor = [UIColor whiteColor];
     } clickItem:^(NSInteger index) {
         NSLog(@"点击了%zd",index);
+    } backgroundViewClick:^{
+        NSLog(@"点击了背景");
     }];
 }
 
@@ -106,6 +112,8 @@
         config.popMenuTextColor = [UIColor whiteColor];
     } clickItem:^(NSInteger index) {
         NSLog(@"点击了%zd",index);
+    } backgroundViewClick:^{
+        NSLog(@"点击了背景");
     }];
     
 }
@@ -123,7 +131,9 @@
         config.popMenuSelectedBgColor = [UIColor yellowColor];
         config.popMenuCoverColor = [UIColor colorWithWhite:1 alpha:1];
         config.popMenuCoverAlpha = 0.8;
-    } clickItem:nil];
+    } clickItem:nil backgroundViewClick:^{
+        NSLog(@"点击了背景");
+    }];
 }
 
 
@@ -140,7 +150,9 @@
         config.popMenuSelectedBgColor = [UIColor lightGrayColor];
         config.popMenuBackgroundColor = [UIColor colorWithWhite:0 alpha:0.7];
         config.popMenuTextColor = [UIColor whiteColor];
-    } clickItem:nil];
+    } clickItem:nil backgroundViewClick:^{
+        NSLog(@"点击了背景");
+    }];
 }
 
 /**
@@ -153,7 +165,9 @@
         config.popMenuOffset = 4;
         config.popMenuArrowHeight = 6;
         config.popMenuSelectedBgColor = [UIColor yellowColor];
-    } clickItem:nil];
+    } clickItem:nil backgroundViewClick:^{
+        NSLog(@"点击了背景");
+    }];
     
 }
 

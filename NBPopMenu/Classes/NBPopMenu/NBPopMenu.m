@@ -38,9 +38,14 @@
  */
 @property(nonatomic, strong) UIButton *coverBtn;
 /**
- 保存用于点击的block
+ 保存用于点击选中的block
  */
 @property(nonatomic, copy) void(^clickIndexBlock)(NSInteger);
+
+/**
+ 保存用于点击背景的block
+ */
+@property(nonatomic, copy) void(^backgroundViewClick)(void);
 /**
  容器View
  */
@@ -62,9 +67,9 @@
 /**
  快速创建方法
  */
-+ (instancetype)showPopMenuWithItems:(NSArray <NSString *>*)items fromView:(UIView *)fromView updateWithConfig: (void(^)(NBPopMenuConfig *config))configBlock clickItem:(void(^)(NSInteger index))clickIndexBlock;
++ (instancetype)showPopMenuWithItems:(NSArray <NSString *>*)items fromView:(UIView *)fromView updateWithConfig: (void(^)(NBPopMenuConfig *config))configBlock clickItem:(void(^)(NSInteger index))clickIndexBlock backgroundViewClick:(void(^)(void))backgroundViewClick;
 {
-    return [self showPopMenuWithItems:items WithImages:nil fromView:fromView updateWithConfig:configBlock clickItem:clickIndexBlock];
+    return [self showPopMenuWithItems:items WithImages:nil fromView:fromView updateWithConfig:configBlock clickItem:clickIndexBlock backgroundViewClick:backgroundViewClick];
 }
 
 + (instancetype)showPopMenuWithItems:(NSArray <NSString *>*)items
@@ -72,8 +77,9 @@
                             fromView:(UIView *)fromView
                     updateWithConfig: (void(^)(NBPopMenuConfig *config))configBlock
                            clickItem:(void(^)(NSInteger index))clickIndexBlock
+                backgroundViewClick:(void(^)(void))backgroundViewClick
 {
-    NBPopMenu *popMenu = [[NBPopMenu alloc] initWithItems:items images:images updateWithConfig:configBlock clickItem:clickIndexBlock];
+    NBPopMenu *popMenu = [[NBPopMenu alloc] initWithItems:items images:images updateWithConfig:configBlock clickItem:clickIndexBlock backgroundViewClick:backgroundViewClick];
     
     [popMenu showFromView:fromView];
     
@@ -84,6 +90,7 @@
                             fromView:(UIView *)fromView
                     updateWithConfig: (void(^)(NBPopMenuConfig *config))configBlock
                            clickItem:(void(^)(NSInteger index))clickIndexBlock
+                 backgroundViewClick:(void(^)(void))backgroundViewClick
 {
     NSMutableArray <NSString *>*arr = [NSMutableArray array];
     NSMutableArray <NSString *>*images = [NSMutableArray array];
@@ -93,19 +100,24 @@
         [images addObject:value];
     }];
     
-    return [self showPopMenuWithItems:arr WithImages:images fromView:fromView updateWithConfig:configBlock clickItem:clickIndexBlock];
+    return [self showPopMenuWithItems:arr WithImages:images fromView:fromView updateWithConfig:configBlock clickItem:clickIndexBlock backgroundViewClick:backgroundViewClick];
 }
 
-+ (instancetype)showPopMenuWithItems:(NSArray <NSString *>*)items fromPoint:(CGPoint)point updateWithConfig: (void(^)(NBPopMenuConfig *config))configBlock clickItem:(void(^)(NSInteger index))clickIndexBlock
-{
-    
-    return [self showPopMenuWithItems:items WithImages:nil fromPoint:point updateWithConfig:configBlock clickItem:clickIndexBlock];
-}
-
-+ (instancetype)showPopMenuWithDict:(NSDictionary *)itemDict
++ (instancetype)showPopMenuWithItems:(NSArray <NSString *>*)items
                            fromPoint:(CGPoint)point
                     updateWithConfig: (void(^)(NBPopMenuConfig *config))configBlock
                            clickItem:(void(^)(NSInteger index))clickIndexBlock
+                 backgroundViewClick:(void(^)(void))backgroundViewClick
+{
+    
+    return [self showPopMenuWithItems:items WithImages:nil fromPoint:point updateWithConfig:configBlock clickItem:clickIndexBlock backgroundViewClick:backgroundViewClick];
+}
+
++ (instancetype)showPopMenuWithDict:(NSDictionary *)itemDict
+                          fromPoint:(CGPoint)point
+                   updateWithConfig: (void(^)(NBPopMenuConfig *config))configBlock
+                          clickItem:(void(^)(NSInteger index))clickIndexBlock
+                backgroundViewClick:(void(^)(void))backgroundViewClick
 {
     NSMutableArray <NSString *>*arr = [NSMutableArray array];
     NSMutableArray <NSString *>*images = [NSMutableArray array];
@@ -114,7 +126,7 @@
         [arr addObject:key];
         [images addObject:value];
     }];
-    return [self showPopMenuWithItems:arr WithImages:images fromPoint:point updateWithConfig:configBlock clickItem:clickIndexBlock];
+    return [self showPopMenuWithItems:arr WithImages:images fromPoint:point updateWithConfig:configBlock clickItem:clickIndexBlock backgroundViewClick:backgroundViewClick];
 }
 
 + (instancetype)showPopMenuWithItems:(NSArray <NSString *>*)items
@@ -122,15 +134,21 @@
                            fromPoint:(CGPoint)point
                     updateWithConfig: (void(^)(NBPopMenuConfig *config))configBlock
                            clickItem:(void(^)(NSInteger index))clickIndexBlock
+                 backgroundViewClick:(void(^)(void))backgroundViewClick
+
 {
-    NBPopMenu *popMenu = [[NBPopMenu alloc] initWithItems:items images:images updateWithConfig:configBlock clickItem:clickIndexBlock];
+    NBPopMenu *popMenu = [[NBPopMenu alloc] initWithItems:items images:images updateWithConfig:configBlock clickItem:clickIndexBlock backgroundViewClick:backgroundViewClick];
     
     [popMenu showFromPoint:point];
     
     return popMenu;
 }
 
-- (instancetype)initWithItems:(NSArray <NSString *>*)items images:(NSArray <NSString *>*)images updateWithConfig: (void(^)(NBPopMenuConfig *config))configBlock clickItem:(void(^)(NSInteger index))clickIndexBlock
+- (instancetype)initWithItems:(NSArray <NSString *>*)items
+                       images:(NSArray <NSString *>*)images
+             updateWithConfig: (void(^)(NBPopMenuConfig *config))configBlock
+                    clickItem:(void(^)(NSInteger index))clickIndexBlock
+          backgroundViewClick:(void(^)(void))backgroundViewClick
 {
     NBPopMenu *popMenu = [[NBPopMenu alloc] init];
     if (images != nil) {
@@ -140,7 +158,9 @@
     if (configBlock) {
         configBlock(popMenu.config);
     }
+    
     popMenu.clickIndexBlock = clickIndexBlock;
+    popMenu.backgroundViewClick = backgroundViewClick;
     popMenu.items = items;
 
     return popMenu;
@@ -275,6 +295,9 @@
         self.coverBtn.alpha = 0;
         self.alpha = 0;
     } completion:^(BOOL finished) {
+        if (self.backgroundViewClick) {
+            self.backgroundViewClick();
+        }
         [self removeFromSuperview];
         [self.coverBtn removeFromSuperview];
     }];
